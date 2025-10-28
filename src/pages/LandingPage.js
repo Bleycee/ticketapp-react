@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import '../App.css';
 
+
 function LandingPage() {
-  return (
+   const [menuOpen, setMenuOpen] = useState(false);
+  
+ return (
     <div className="landing-page">
       {/* Header with Navigation */}
-      <header>
-        <nav className="navbar">
+      <header className="landing-header">
+        <nav className="landing-navbar">
           <div className="container">
-            <div className="nav-content">
-              <Link to="/" className="logo">TicketFlow</Link>
-              <div className="nav-buttons">
-                <Link to="/login" className="btn-login">Login</Link>
-                <Link to="/signup" className="btn-start">Get Started</Link>
+            <div className="landing-nav-content">
+              <Link to="/" className="landing-logo">TicketFlow</Link>
+
+              {/* Hamburger Icon */}
+              <div
+                className={`landing-hamburger ${menuOpen ? 'active' : ''}`}
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              {/* Nav Buttons */}
+              <div className={`landing-nav-buttons ${menuOpen ? 'open' : ''}`}>
+                <Link to="/login" className="btn-login" onClick={() => setMenuOpen(false)}>Login</Link>
+                <Link to="/signup" className="btn-start" onClick={() => setMenuOpen(false)}>Get Started</Link>
               </div>
             </div>
           </div>
